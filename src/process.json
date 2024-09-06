@@ -2,18 +2,9 @@
   "/size": {
     "title": "Select Size",
     "options": [
-      {
-        "text": "small",
-        "value": 0.5
-      },
-      {
-        "text": "medium",
-        "value": 0.75
-      },
-      {
-        "text": "large",
-        "value": 1
-      }
+      "small",
+      "medium",
+      "large"
     ],
     "link": {
       "text": "Add Toppings",

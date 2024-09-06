@@ -9,6 +9,7 @@ import { motion } from 'framer-motion'
 
 // component imports
 import Pizza from '@/components/Pizza'
+import PizzaContextProvider  from '@/components/Context'
 
 // style imports
 import styles from '@/styles/pizzaLayout.module.scss'
@@ -50,23 +51,25 @@ const PizzaLayout = () => {
         </motion.h1>
       </nav>
 
-      {
-        routeData.link &&
-          <motion.section
-            initial={{ x: '100vw' }}
-            animate={{ x: 0 }}
-            transition={{
-              delay: 0.5,
-              duration: 1.5,
-              type: 'spring',
-              stiffness: 100,
-            }}
-            key={location.pathname}>
-            <Outlet />
-          </motion.section>
-      }
+      <PizzaContextProvider>
+        {
+          routeData.link &&
+            <motion.section
+              initial={{ x: '100vw' }}
+              animate={{ x: 0 }}
+              transition={{
+                delay: 0.5,
+                duration: 1.5,
+                type: 'spring',
+                stiffness: 100,
+              }}
+              key={location.pathname}>
+              <Outlet />
+            </motion.section>
+        }
 
-      <Pizza />
+        <Pizza />
+      </PizzaContextProvider>
 
       { routeData.link &&
           <Link className={styles.nextButton} to={routeData.link.to}>
