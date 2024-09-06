@@ -1,10 +1,11 @@
 // react router imports
 import { createBrowserRouter } from 'react-router-dom'
 
+// layout & pages
+import PizzaLayout from '@/components/PizzaLayout'
 import Home from '@/pages/Home'
 import Size from '@/pages/Size'
 import Toppings from '@/pages/Toppings'
-import Final from '@/pages/Final'
 
 const routes = [
   {
@@ -15,16 +16,20 @@ const routes = [
         element: <Home />,
       },
       {
-        path: '/size',
-        element: <Size />,
-      },
-      {
-        path: '/toppings',
-        element: <Toppings />,
-      },
-      {
-        path: '/final',
-        element: <Final />,
+        element: <PizzaLayout />,
+        children: [
+          {
+            path: 'size',
+            element: <Size />,
+          },
+          {
+            path: 'toppings',
+            element: <Toppings />,
+          },
+          {
+            path: 'final',
+          },
+        ],
       },
     ],
   },

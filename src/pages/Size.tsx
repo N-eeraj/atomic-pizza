@@ -1,6 +1,8 @@
 const Size = () => {
   return (
-    <div>Size</div>
+    <div>
+      Size
+    </div>
   )
 }
 

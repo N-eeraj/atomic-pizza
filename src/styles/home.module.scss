@@ -31,16 +31,12 @@
 
     .start {
       display: block;
+      width: 100%;
       padding: 12px;
       background-color: palette.$accent;
       color: white;
       border-radius: 10px;
       text-align: center;
-      transition-duration: 400ms;
-
-      &:hover {
-        transform: scale(0.975);
-      }
     }
   }
 }

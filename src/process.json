@@ -1,0 +1,46 @@
+{
+  "/size": {
+    "title": "Select Size",
+    "options": [
+      {
+        "text": "small",
+        "value": 0.5
+      },
+      {
+        "text": "medium",
+        "value": 0.75
+      },
+      {
+        "text": "large",
+        "value": 1
+      }
+    ],
+    "link": {
+      "text": "Add Toppings",
+      "to": "/toppings"
+    }
+  },
+  "/toppings": {
+    "title": "Add Toppings",
+    "options": [
+      "basil",
+      "brocoli",
+      "ham",
+      "mushroom",
+      "olive",
+      "onion",
+      "pepper",
+      "pepperoni",
+      "pineapple",
+      "tomato"
+    ],
+    "link": {
+      "text": "Confirm",
+      "to": "/final"
+    }
+  },
+  "/final": {
+    "title": "Here's Your Pizza!",
+    "actionText": "Make Another"
+  }
+}

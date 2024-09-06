@@ -14,5 +14,9 @@ body {
 
   #root { 
     height: 100svh;
+
+    button {
+      cursor: pointer;
+    }
   }
 }
