@@ -9,7 +9,7 @@ import router from '@/router'
 // style imports
 import '@/styles/app.scss'
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
   </StrictMode>

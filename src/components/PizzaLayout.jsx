@@ -69,18 +69,18 @@ const PizzaLayout = () => {
         }
 
         <Pizza />
+
+        { routeData.actionText &&
+            <button className={styles.nextButton} onClick={handleRestart}>
+              {routeData.actionText}
+            </button>
+        }
       </PizzaContextProvider>
 
       { routeData.link &&
           <Link className={styles.nextButton} to={routeData.link.to}>
             {routeData.link.text}
           </Link>
-      }
-
-      { routeData.actionText &&
-          <button className={styles.nextButton} onClick={handleRestart}>
-            {routeData.actionText}
-          </button>
       }
     </main>
   )

@@ -3,7 +3,7 @@ import { createContext, useState } from 'react'
 
 export const PizzaContext = createContext({})
 
-const PizzaContextProvider = ({ children }: { children: React.ReactNode }) => {
+const PizzaContextProvider = ({ children }) => {
   const [size, setSize] = useState('medium')
   const [previousSize, setPreviousSize] = useState(null)
   const [toppings, setToppings] = useState([])

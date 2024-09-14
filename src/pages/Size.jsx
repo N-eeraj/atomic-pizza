@@ -1,30 +1,33 @@
 // react imports
-import { ChangeEvent, useContext } from 'react'
-
-// context imports
-import { PizzaContext } from '@/components/Context'
+import { useContext } from 'react'
 
 // react router imports
 import { useLocation } from 'react-router-dom'
 
+// context imports
+import { PizzaContext } from '@/components/Context'
+
 // data imports
 import data from '@/process.json'
+
+// style imports
+import styles from '@/styles/size.module.scss'
 
 const Size = () => {
   const { size, setSize, setPreviousSize } = useContext(PizzaContext)
   const { pathname } = useLocation()
   const { options } = data[pathname]
 
-  const handleSizeChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+  const handleSizeChange = ({ target }) => {
     setPreviousSize(size)
     setSize(target.value)
   }
 
   return (
-    <ul>
-      { options.map((option: string) => (
+    <ul className={styles.list}>
+      { options.map((option) => (
           <li key={option}>
-            <label>
+            <label className={`${styles.itemLabel} ${option === size && styles.active}`}>
               <input
                 checked={option === size}
                 value={option}

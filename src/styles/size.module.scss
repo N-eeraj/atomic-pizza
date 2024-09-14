@@ -1,0 +1,44 @@
+@use "palette.scss";
+
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+  list-style: none;
+
+  .itemLabel {
+    position: relative;
+    font-size: 14pt;
+    text-transform: capitalize;
+    transition-duration: 400ms;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      width: 10px;
+      aspect-ratio: 1;
+      background-color: black;
+      border-radius: 50%;
+      transform: translate(100%, -50%);
+      opacity: 0;
+      transition-duration: 400ms;
+    }
+
+    &.active {
+      color: palette.$accent;
+
+      &::before {
+        background-color: palette.$accent;
+        opacity: 1;
+        transform: translate(-4px, -50%);
+      }
+    }
+    
+    input[type="radio"] {
+      display: none;
+    }
+  }
+}
