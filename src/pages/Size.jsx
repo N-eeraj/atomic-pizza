@@ -1,5 +1,5 @@
 // react imports
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 
 // react router imports
 import { useLocation } from 'react-router-dom'
@@ -14,7 +14,12 @@ import data from '@/process.json'
 import styles from '@/styles/size.module.scss'
 
 const Size = () => {
-  const { size, setSize, setPreviousSize } = useContext(PizzaContext)
+  const {
+    size,
+    setSize,
+    setPreviousSize,
+    setToppings,
+  } = useContext(PizzaContext)
   const { pathname } = useLocation()
   const { options } = data[pathname]
 
@@ -22,6 +27,10 @@ const Size = () => {
     setPreviousSize(size)
     setSize(target.value)
   }
+
+  useEffect(() => {
+    setToppings([])
+  }, [])
 
   return (
     <ul className={styles.list}>

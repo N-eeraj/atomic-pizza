@@ -1,5 +1,8 @@
 // react imports
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
+
+// react router imports
+import { useLocation } from 'react-router-dom'
 
 // context imports
 import { PizzaContext } from '@/components/Context'
@@ -7,8 +10,18 @@ import { PizzaContext } from '@/components/Context'
 // framer motion imports
 import { motion } from 'framer-motion'
 
+// style imports
+import styles from '@/styles/pizza.module.scss'
+
 const Pizza = () => {
-  const { size, previousSize, toppings } = useContext(PizzaContext)
+  const pizzaRef = useRef(null)
+  const { pathname } = useLocation()
+
+  const {
+    size,
+    previousSize,
+    toppings,
+  } = useContext(PizzaContext)
 
   const variants = {
     'small': {
@@ -16,22 +29,33 @@ const Pizza = () => {
       scale: 0.5,
     },
     'medium': {
-      rotate: 180,
+      rotate: 360,
       scale: 0.75,
     },
     'large': {
-      rotate: 360,
+      rotate: 720,
       scale: 1,
     },
   }
 
   return (
-    <motion.img
+    <motion.div
+      ref={pizzaRef}
       variants={variants}
       initial={previousSize}
       animate={size}
       transition={{ type: 'spring', stiffness: 300, duration: 1.5 }}
-      src="/base.png" />
+      className={styles.pizzaContainer}>
+      { toppings.map(({ topping, x, y }, index) => (
+          <motion.img
+            drag={pathname !== '/final'}
+            animate={{ x, y }}
+            key={index}
+            src={`/toppings/${topping}.png`}
+            className={styles.topping} />
+        ))
+      }
+    </motion.div>
   )
 }
 

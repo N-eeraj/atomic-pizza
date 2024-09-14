@@ -1,0 +1,13 @@
+.pizzaContainer {
+  width: min(100%, 360px);
+  aspect-ratio: 1;
+  background-image: url('/base.png');
+  background-size: contain;
+  border-radius: 50%;
+  overflow: hidden;
+
+  .topping {
+    position: absolute;
+    width: 32px;
+  }
+}
