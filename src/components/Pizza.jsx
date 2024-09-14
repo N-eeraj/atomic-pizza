@@ -21,7 +21,10 @@ const Pizza = () => {
     size,
     previousSize,
     toppings,
+    setToppings,
   } = useContext(PizzaContext)
+
+  const final = pathname === '/final'
 
   const variants = {
     'small': {
@@ -38,6 +41,28 @@ const Pizza = () => {
     },
   }
 
+  const removeTopping = (id) => {
+    if (final) return
+    setToppings(prevToppings => prevToppings.filter(topping => topping.id !== id))
+  }
+
+  const dragEndHandler = (id, { x, y }) => {
+    if (final) return
+    const { top, right, bottom, left } = pizzaRef.current.getBoundingClientRect()
+    if (y < top || x > right || y > bottom || x < left) {
+      removeTopping(id)
+    }
+    else {
+      setToppings(prevToppings => 
+        prevToppings.map(topping => topping.id === id ? {
+          ...topping,
+          x: x - left - 12,
+          y: y - top - 12,
+        } : topping)
+      ) 
+    }
+  }
+
   return (
     <motion.div
       ref={pizzaRef}
@@ -46,13 +71,15 @@ const Pizza = () => {
       animate={size}
       transition={{ type: 'spring', stiffness: 300, duration: 1.5 }}
       className={styles.pizzaContainer}>
-      { toppings.map(({ topping, x, y }, index) => (
+      { toppings.map(({ id, topping, x, y }) => (
           <motion.img
-            drag={pathname !== '/final'}
+            drag={!final}
             animate={{ x, y }}
-            key={index}
+            key={id}
             src={`/toppings/${topping}.png`}
-            className={styles.topping} />
+            className={styles.topping}
+            onDragEnd={(_, info) => dragEndHandler(id, info.point)}
+            onDoubleClick={() => removeTopping(id)} />
         ))
       }
     </motion.div>

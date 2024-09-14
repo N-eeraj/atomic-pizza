@@ -1,5 +1,5 @@
 // react imports
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 
 // react router imports
 import { useLocation } from 'react-router-dom'
@@ -17,6 +17,7 @@ import data from '@/process.json'
 import styles from '@/styles/toppings.module.scss'
 
 const Toppings = () => {
+  const id = useRef(0)
   const { setToppings } = useContext(PizzaContext)
   const { pathname } = useLocation()
   const { options } = data[pathname]
@@ -25,6 +26,7 @@ const Toppings = () => {
     setToppings(prevToppings => [
       ...prevToppings,
       {
+        id: id.current++,
         topping,
         x: 120,
         y: 120,

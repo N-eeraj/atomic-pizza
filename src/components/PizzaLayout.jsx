@@ -22,10 +22,6 @@ const PizzaLayout = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const handleRestart = () => {
-
-  }
-
   useEffect(() => {
     setRouteData(data[location.pathname])
   }, [location.pathname])
@@ -71,7 +67,7 @@ const PizzaLayout = () => {
         <Pizza />
 
         { routeData.actionText &&
-            <button className={styles.nextButton} onClick={handleRestart}>
+            <button className={styles.nextButton} onClick={() => navigate('/')}>
               {routeData.actionText}
             </button>
         }
