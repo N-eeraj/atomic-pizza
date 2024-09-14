@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom'
 import { PizzaContext } from '@/components/Context'
 
 // data imports
-import data from '@/process.json'
+import data from '@/process'
 
 // style imports
 import styles from '@/styles/size.module.scss'

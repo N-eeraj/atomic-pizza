@@ -11,11 +11,14 @@ import { motion } from 'framer-motion'
 import Pizza from '@/components/Pizza'
 import PizzaContextProvider  from '@/components/Context'
 
+// image import
+import backImg from '@/assets/back.svg'
+
 // style imports
 import styles from '@/styles/pizzaLayout.module.scss'
 
 // data imports
-import data from '@/process.json'
+import data from '@/process'
 
 const PizzaLayout = () => {
   const [routeData, setRouteData] = useState({})
@@ -34,7 +37,7 @@ const PizzaLayout = () => {
           whileTap={{ scale: 0.95 }}
           className={styles.backButton}
           onClick={() => navigate(-1)}>
-          <img src="/back.svg" />
+          <img src={backImg} />
         </motion.button>
 
         <motion.h1

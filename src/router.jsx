@@ -1,5 +1,6 @@
 // react router imports
 import { createBrowserRouter } from 'react-router-dom'
+const basename = import.meta.env.BASE_URL
 
 // layout & pages
 import PizzaLayout from '@/components/PizzaLayout'
@@ -35,6 +36,6 @@ const routes = [
   },
 ]
 
-const router = createBrowserRouter(routes)
+const router = createBrowserRouter(routes, { basename })
 
 export default router

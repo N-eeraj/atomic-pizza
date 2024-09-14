@@ -11,13 +11,12 @@ import { PizzaContext } from '@/components/Context'
 import { motion } from 'framer-motion'
 
 // data imports
-import data from '@/process.json'
+import data from '@/process'
 
 // style imports
 import styles from '@/styles/toppings.module.scss'
 
 const Toppings = () => {
-  const id = useRef(0)
   const { setToppings } = useContext(PizzaContext)
   const { pathname } = useLocation()
   const { options } = data[pathname]
@@ -25,19 +24,14 @@ const Toppings = () => {
   const addToppings = topping => {
     setToppings(prevToppings => [
       ...prevToppings,
-      {
-        id: id.current++,
-        topping,
-        x: 120,
-        y: 120,
-      },
+      topping,
     ])
   }
 
   return (
     <ul className={styles.list}>
-      { options.map((option) => (
-          <li key={option}>
+      { options.map(({ text, image }) => (
+          <li key={text}>
             <motion.button
               whileHover={{ scale: 0.95 }}
               transition={{
@@ -45,8 +39,8 @@ const Toppings = () => {
                 stiffness: 500,
               }}
               className={styles.item}
-              onClick={() => addToppings(option)}>
-              {option}
+              onClick={() => addToppings(image)}>
+              {text}
             </motion.button>
           </li>
         ))
